@@ -7,7 +7,15 @@ module.exports = knex => {
       .from('users')
   }
 
+  const getCategories = () => {
+
+    return knex
+      .select('*')
+      .from('categories')
+  }
+
   return {
     getUsers,
+    getCategories,
   }
 }
