@@ -11,6 +11,8 @@ const dbHelpers = require('./helpers/dbHelpers')(knex);
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const categoriesRouter = require('./routes/categories');
+const appointmentsRouter = require('./routes/appointments');
+const notesRouter = require('./routes/notes');
 
 const app = express();
 
@@ -28,6 +30,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/api/users', usersRouter(dbHelpers));
 app.use('/api/categories', categoriesRouter(dbHelpers));
+app.use('/api/appointments', appointmentsRouter(dbHelpers));
+app.use('/api/notes', notesRouter(dbHelpers));
 
 
 // catch 404 and forward to error handler
