@@ -31,6 +31,11 @@ app.use('/api/users', usersRouter(dbHelpers));
 app.use('/api/categories', categoriesRouter(dbHelpers));
 app.use('/api/appointments', appointmentsRouter(dbHelpers));
 app.use('/api/notes', notesRouter(dbHelpers));
+app.use('/api/login', notesRouter(dbHelpers));
+app.use('/api/register', notesRouter(dbHelpers));
+app.use('/api/logout', notesRouter(dbHelpers));
+
+
 
 
 // catch 404 and forward to error handler
