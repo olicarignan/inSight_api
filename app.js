@@ -7,7 +7,6 @@ const knexConfig = require('./knexfile');
 const knex = require('knex')(knexConfig['development']);
 require('dotenv').config();
 const dbHelpers = require('./helpers/dbHelpers')(knex);
-
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const categoriesRouter = require('./routes/categories');
