@@ -5,7 +5,7 @@ module.exports = knex => {
     return knex
       .select('*')
       .from('users')
-      .where({email: email, password: password})
+      // .where({email: email, password: password})
   }
 
   const getCategories = () => {
@@ -47,6 +47,6 @@ module.exports = knex => {
     getAppointments,
     getNotes,
     addUser,
-    addAppointment
+    // addAppointment
   }
 }
