@@ -33,6 +33,9 @@ exports.up = function(knex) {
     note.increments('id').primary();
     note.integer('category_id').references('id').inTable('categories').notNull().onDelete('cascade');
     note.integer('appointment_id').references('id').inTable('appointments').notNull().onDelete('cascade');
+    note.string('note_title');
+    note.text('note_content')
+    note.string('note_preview')
     note.timestamps(true, true);
   });
 };
