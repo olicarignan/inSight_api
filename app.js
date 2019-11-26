@@ -12,6 +12,10 @@ const usersRouter = require('./routes/users');
 const categoriesRouter = require('./routes/categories');
 const appointmentsRouter = require('./routes/appointments');
 const notesRouter = require('./routes/notes');
+const loginRouter = require('./routes/login');
+const logoutRouter = require('./routes/logout');
+const registerRouter = require('./routes/register');
+
 
 const app = express();
 
@@ -31,9 +35,9 @@ app.use('/api/users', usersRouter(dbHelpers));
 app.use('/api/categories', categoriesRouter(dbHelpers));
 app.use('/api/appointments', appointmentsRouter(dbHelpers));
 app.use('/api/notes', notesRouter(dbHelpers));
-app.use('/api/login', notesRouter(dbHelpers));
-app.use('/api/register', notesRouter(dbHelpers));
-app.use('/api/logout', notesRouter(dbHelpers));
+app.use('/api/login', loginRouter(dbHelpers));
+app.use('/api/register', registerRouter(dbHelpers));
+app.use('/api/logout', logoutRouter(dbHelpers));
 
 
 

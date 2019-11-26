@@ -1,11 +1,10 @@
 module.exports = knex => {
 
-  const getUsers = (email, password) => {
+  const getUsers = () => {
 
     return knex
       .select('*')
       .from('users')
-      .where({email: email, password: password})
   }
 
   const getCategories = () => {
@@ -13,6 +12,7 @@ module.exports = knex => {
     return knex
       .select('*')
       .from('categories')
+      
   }
   const getAppointments = () => {
 
@@ -33,11 +33,17 @@ module.exports = knex => {
       .returning('id')
       .then(res => res.rows[0])
   }
+  const getUsersLogin = (email, password) => {
 
-  // const addAppointment = (appointment) => {
-  //   return knex('appointments')
-  //     .insert({})
-  // }
+    return knex
+      .select('*')
+      .from('users')
+      .where({email: email, password: password})
+  }
+  const addAppointment = (appointment) => {
+    return knex('appointments')
+      .insert({})
+  }
 
 
 
@@ -47,6 +53,7 @@ module.exports = knex => {
     getAppointments,
     getNotes,
     addUser,
+    getUsersLogin,
     addAppointment
   }
 }
