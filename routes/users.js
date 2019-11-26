@@ -18,7 +18,7 @@ module.exports = ({getUsers, addUser}) => {
   })
   router.get('/', (req, res, next) => {
     
-    getUsers()
+    getUsers(req.body.email, req.body.password)
       .then(result => {
         res.json(result);
       })
