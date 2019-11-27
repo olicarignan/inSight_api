@@ -5,9 +5,11 @@ const { getApiResults } = require('../helpers/apiHelpers');
 //get users route
 module.exports = ({getUsersLogin, addUser}) => {
   router.post('/', (req, res, next) => {
-    getUsersLogin(req.body.email, req.body.password)
-    .then(result => {
-      res.json(result);
+    const {email, password} = req.body;
+    getUsersLogin(email, password)
+    .then(user => {
+      res.json(user)
+      .status(200);
     })
     .catch(error => {
       console.log(error);

@@ -9,7 +9,7 @@ module.exports = ({ addUser }) => {
         if(!user) {
           res.send({error: 'error'});
         }
-        req.send('logged in')
+        res.send('logged in')
       })
       .catch(e => res.send(e));
   })
