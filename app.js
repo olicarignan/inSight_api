@@ -16,7 +16,7 @@ const notesRouter = require('./routes/notes');
 const loginRouter = require('./routes/login');
 const logoutRouter = require('./routes/logout');
 const registerRouter = require('./routes/register');
-
+const jwt = require('jsonwebtoken');
 
 const app = express();
 
