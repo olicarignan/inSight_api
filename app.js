@@ -5,6 +5,7 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const knexConfig = require('./knexfile');
 const knex = require('knex')(knexConfig['development']);
+const jwt = require('jsonwebtoken');
 require('dotenv').config();
 const dbHelpers = require('./helpers/dbHelpers')(knex);
 const indexRouter = require('./routes/index');
