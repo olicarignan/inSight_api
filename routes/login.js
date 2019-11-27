@@ -1,15 +1,33 @@
 const express = require('express');
 const router = express.Router();
 const { getApiResults } = require('../helpers/apiHelpers');
+const bcrypt = require('bcrypt')
 
 //get users route
 module.exports = ({getUsersLogin, addUser}) => {
 
+
    
+  const login = function(email, password) {
+     return getUsersLogin(email)
+      .then(user => {
+        if(bcrypt.compareSync(password, user[0].password)) {
+          return true;
+        }
+        return null;
+      })
+  }
+
   router.post('/', (req, res, next) => {
-    const {email, password} = req.body;
-    getUsersLogin(email, password)
+    const { email, password } = req.body;
+    
+    login(email, password)
     .then(user => {
+      if (user === null) {
+        res.json(null)
+        return
+      }
+      console.log(user, "it worked backend")
       res.json(user)
       .status(200);
     })

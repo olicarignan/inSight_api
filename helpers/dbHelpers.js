@@ -33,12 +33,12 @@ module.exports = knex => {
       .returning('*')
       .then(res => res.rows[0])
   }
-  const getUsersLogin = (email, password) => {
+  const getUsersLogin = (email) => {
 
     return knex
       .select('*')
       .from('users')
-      .where({email: email, password: password})
+      .where({email: email})
   }
   const addAppointment = (appointment) => {
     return knex('appointments')
