@@ -7,7 +7,7 @@ const jwt = require('jsonwebtoken');
 const  authenticateToken  = require('../helpers/tokenHelper');
 
 //get users route
-module.exports = ({getUsersLogin, addUser}) => {
+module.exports = ({ getUsersLogin }) => {
 
 
    
@@ -17,7 +17,6 @@ module.exports = ({getUsersLogin, addUser}) => {
         if(bcrypt.compareSync(password, user[0].password)) {
           return user[0];
         }
-        return null;
       })
   }
 
@@ -48,17 +47,7 @@ module.exports = ({getUsersLogin, addUser}) => {
     .catch(error => {
       console.log(error);
     });
+  
 });
-  
-  // router.get('/', (req, res, next) => { 
-  //   getUsersLogin(req.body.email, req.body.password)
-  //     .then(result => {
-  //       res.json(result);
-  //     })
-  //     .catch(error => {
-  //       console.log(error);
-  //     });
-  // });
-  
   return router;
 };
