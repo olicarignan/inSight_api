@@ -14,6 +14,7 @@ module.exports = ({ addUser }) => {
           res.send({error: 'error'});
         }
         res.send('logged in')
+
       })
       .catch(e => res.send(e));
   })
