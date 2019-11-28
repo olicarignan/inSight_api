@@ -31,7 +31,7 @@ module.exports = ({getUsersLogin, addUser}) => {
       }
       jwt.sign(user, process.env.ACCESS_TOKEN_SECRET, (err, token) => {
         // window.localStorage.setItem({token})
-        res.send({token})
+        // res.send({token})
         res.json({user,  token})
         .status(204);
       });
