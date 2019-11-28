@@ -9,8 +9,11 @@ exports.seed = function(knex) {
         {
           appointment_name: 'Psychology',
           location: 'red',
-          start_time: '2017-04-20 19:33:56.774+03',
-          end_time: '2017-04-20 20:33:56.774+03', 
+          start_date:'2019-11-28',
+          end_date:'2019-11-29',
+          start_time: '19:33:56',
+          end_time: '20:33:56', 
+          appointment_small_note:'this is a small note',
           category_id: 1,
           user_id: 1
         },
