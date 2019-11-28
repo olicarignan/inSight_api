@@ -42,15 +42,6 @@ module.exports = ({getUsersLogin, addUser}) => {
     });
 });
   
-  // router.get('/', (req, res, next) => { 
-  //   getUsersLogin(req.body.email, req.body.password)
-  //     .then(result => {
-  //       res.json(result);
-  //     })
-  //     .catch(error => {
-  //       console.log(error);
-  //     });
-  // });
   
   return router;
 };

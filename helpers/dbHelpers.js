@@ -35,10 +35,6 @@ module.exports = knex => {
     return knex('users')
       .insert({first_name: user.first_name, last_name: user.last_name, email: user.email, password: user.password})
       .returning('*')
-<<<<<<< HEAD
-      .then(res => res.rows[0])
-=======
->>>>>>> master
   }
 
   const getUsersLogin = (email) => {
@@ -50,8 +46,10 @@ module.exports = knex => {
 
   const addAppointment = (appointment) => {
     return knex('appointments')
-      .insert({})
+      .insert({appointment_name: appointment.appointment_name, location: appointment.location, start_time: appointment.start_time, /*start_date: appointment.start_date, */ end_time: appointment.end_time, /*end_date: appointment.end_date,*/ category_id: appointment.category_id, user_id: appointment.user_id})
+      .returning('*')
   }
+
 
 
 
