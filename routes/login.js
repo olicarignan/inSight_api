@@ -7,7 +7,7 @@ const jwt = require('jsonwebtoken');
 const  authenticateToken  = require('../helpers/tokenHelper');
 
 //get users route
-module.exports = ({ getUsersLogin }) => {
+module.exports = ({getUsersLogin, addUser}) => {
 
 
    
@@ -17,6 +17,7 @@ module.exports = ({ getUsersLogin }) => {
         if(bcrypt.compareSync(password, user[0].password)) {
           return user[0];
         }
+        return null;
       })
   }
 
@@ -26,14 +27,6 @@ module.exports = ({ getUsersLogin }) => {
     login(email, password)
     .then(user => {
       if (user === null) {
-<<<<<<< HEAD
-        return
-      } else {
-      console.log(user, "it worked backend")
-      res.json(user)
-      .status(200);
-      }
-=======
         throw new Error('wrong password');
       }
       jwt.sign(user, process.env.ACCESS_TOKEN_SECRET, (err, token) => {
@@ -42,12 +35,21 @@ module.exports = ({ getUsersLogin }) => {
         res.json({user,  token})
         .status(204);
       });
->>>>>>> token
     })
     .catch(error => {
       console.log(error);
     });
-  
 });
+  
+  // router.get('/', (req, res, next) => { 
+  //   getUsersLogin(req.body.email, req.body.password)
+  //     .then(result => {
+  //       res.json(result);
+  //     })
+  //     .catch(error => {
+  //       console.log(error);
+  //     });
+  // });
+  
   return router;
 };
