@@ -31,7 +31,6 @@ module.exports = knex => {
     return knex('users')
       .insert({first_name: user.first_name, last_name: user.last_name, email: user.email, password: user.password})
       .returning('*')
-      .then(res => res.rows[0])
   }
   const getUsersLogin = (email) => {
 
