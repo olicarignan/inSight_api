@@ -1,20 +1,29 @@
+require('dotenv').config();
 const express = require('express');
 const router = express.Router();
 const { getApiResults } = require('../helpers/apiHelpers');
 const bcrypt = require('bcrypt')
+const jwt = require('jsonwebtoken');
 
 module.exports = ({ addUser }) => {
   router.post('/', (req, res, next) => {
-    
-    const user = req.body
+    console.log(req.body.user)
+    const user = req.body.user
     user.password = bcrypt.hashSync(user.password, 10)
     addUser(user)
       .then(user => {
-        if(!user) {
-          res.send({error: 'error'});
+        const newUser = user[0];
+        console.log(newUser)
+        if(!newUser) {
+          throw new Error('error')
         }
-        res.send('logged in')
-
+        jwt.sign(newUser, process.env.ACCESS_TOKEN_SECRET, (err, token) => {
+          // window.localStorage.setItem({token})
+          // res.send({token})
+          res.json({newUser, token})
+          .status(204);
+        });
+        // res.json(user[0]);
       })
       .catch(e => res.send(e));
   })

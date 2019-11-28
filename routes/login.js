@@ -7,16 +7,18 @@ const jwt = require('jsonwebtoken');
 const  authenticateToken  = require('../helpers/tokenHelper');
 
 //get users route
-module.exports = ({ getUsersLogin }) => {
+module.exports = ({getUsersLogin, addUser}) => {
 
 
    
   const login = function(email, password) {
      return getUsersLogin(email)
       .then(user => {
+        console.log(user)
         if(bcrypt.compareSync(password, user[0].password)) {
           return user[0];
         }
+        return null;
       })
   }
 
@@ -26,20 +28,29 @@ module.exports = ({ getUsersLogin }) => {
     login(email, password)
     .then(user => {
       if (user === null) {
-        res.json(null)
-        return
+        throw new Error('wrong password');
       }
       jwt.sign(user, process.env.ACCESS_TOKEN_SECRET, (err, token) => {
         // window.localStorage.setItem({token})
         res.send({token})
         res.json({user,  token})
-        .status(200);
+        .status(204);
       });
     })
     .catch(error => {
       console.log(error);
     });
-  
 });
+  
+  // router.get('/', (req, res, next) => { 
+  //   getUsersLogin(req.body.email, req.body.password)
+  //     .then(result => {
+  //       res.json(result);
+  //     })
+  //     .catch(error => {
+  //       console.log(error);
+  //     });
+  // });
+  
   return router;
 };
