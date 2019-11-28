@@ -22,12 +22,12 @@ module.exports = ({getUsersLogin, addUser}) => {
     login(email, password)
     .then(user => {
       if (user === null) {
-        res.json(null)
         return
-      }
+      } else {
       console.log(user, "it worked backend")
       res.json(user)
       .status(200);
+      }
     })
     .catch(error => {
       console.log(error);
