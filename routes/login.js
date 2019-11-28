@@ -14,6 +14,7 @@ module.exports = ({getUsersLogin, addUser}) => {
   const login = function(email, password) {
      return getUsersLogin(email)
       .then(user => {
+        console.log(user)
         if(bcrypt.compareSync(password, user[0].password)) {
           return user[0];
         }
