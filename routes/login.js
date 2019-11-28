@@ -27,14 +27,13 @@ module.exports = ({getUsersLogin, addUser}) => {
     login(email, password)
     .then(user => {
       if (user === null) {
-        res.json(null)
-        return
+        throw new Error('wrong password');
       }
       jwt.sign(user, process.env.ACCESS_TOKEN_SECRET, (err, token) => {
         // window.localStorage.setItem({token})
         res.send({token})
         res.json({user,  token})
-        .status(200);
+        .status(204);
       });
     })
     .catch(error => {
