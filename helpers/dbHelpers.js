@@ -28,23 +28,24 @@ module.exports = knex => {
   }
 
   
-  const updateCategory = (category) => {
+  const updateCategory = (category_id) => {
     return knex('categories')
-      .where({id: category.id})
+      .where({id: category_id})
       .update({ category_name: category.category_name, colour: category.colour})
   }
   
-  const deleteCategory = (category) => {
+  const deleteCategory = (category_id) => {
     return knex('categories')
-      .where({id: category.id})
+      .where({id: category_id})
       .del()
 
   }
 
-  const getNotes = () => {
+  const getNotes = (user_id) => {
     return knex
       .select('*')
       .from('notes')
+      .where({user_id: user_id})
   }
 
   const addNote = (note) => {
@@ -54,15 +55,15 @@ module.exports = knex => {
       .then(res => res.rows[0])
   }
 
-  const updateNote = (note) => {
+  const updateNote = (note_id) => {
     return knex('notes')
-      .where({id: note.id})
+      .where({id: note_id})
       .update({category_id: note.category_id, appointment_id: note.appointment_id, note_title: note.note_title, note_content: note.note_content, note_preview: note.note_preview})
   }
 
-  const deleteNote = (note) => {
+  const deleteNote = (note_id) => {
     return knex('notes')
-      .where({id: note.id})
+      .where({id: note_id})
       .del()
   }
 
@@ -79,9 +80,9 @@ module.exports = knex => {
       .where({email: email})
   }
 
-  const updateAppointment = (appointment) => {
+  const updateAppointment = (appointment_id) => {
     return knex('appointments')
-      .where({id: appointment.id})
+      .where({id: appointment_id})
       .update({start_date: appointment.start_date, 
         start_time: appointment.start_time,
         end_date: appointment.end_date, 
@@ -106,9 +107,9 @@ module.exports = knex => {
       .returning('*')
   }
 
-  const deleteAppointment = (appointment) => {
+  const deleteAppointment = (appointment_id) => {
     return knex('appointments')
-      .where({id: appointment.id})
+      .where({id: appointment_id})
       .del()
   }
 

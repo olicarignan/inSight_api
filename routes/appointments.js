@@ -15,8 +15,8 @@ module.exports = ({ getAppointments, addAppointment, updateAppointment, deleteAp
       });
   });
 
-  router.post('/', function(req, res) {
-    addAppointment(req.body)
+  router.post('/:user_id', function(req, res) {
+    addAppointment(req.params.user_id)
       .then(result => {
         res.json(result)
       })
@@ -25,8 +25,8 @@ module.exports = ({ getAppointments, addAppointment, updateAppointment, deleteAp
       })
   })
 
-  router.put('/', function (req, res) {
-    updateAppointment(req.body)
+  router.put('/:appointment_id', function (req, res) {
+    updateAppointment(req.params.appointment_id)
     .then(result => {
       res.json(result)
     })
@@ -35,8 +35,8 @@ module.exports = ({ getAppointments, addAppointment, updateAppointment, deleteAp
     })
   })
   
-  router.delete('/', function (req, res) {
-    deleteAppointment(req.body)
+  router.delete('/:user_id', function (req, res) {
+    deleteAppointment(req.params.appointment_id)
     .then(result => {
       res.json(result)
     })

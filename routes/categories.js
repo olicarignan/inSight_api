@@ -28,8 +28,8 @@ module.exports = ({ getCategories, addCategories, updateCategory, deleteCategory
       .catch(e => res.send(e));
   })
 
-  router.put('/', function (req, res) {
-    updateCategory(req.body)
+  router.put('/:category_id', function (req, res) {
+    updateCategory(req.params.category_id)
     .then(result => {
       res.json(result)
     })
@@ -38,8 +38,8 @@ module.exports = ({ getCategories, addCategories, updateCategory, deleteCategory
     })
   })
 
-  router.delete('/', function (req, res) {
-    deleteCategory(req.body)
+  router.delete('/:category_id', function (req, res) {
+    deleteCategory(req.params.category_id)
     .then(result => {
       res.json(result)
     })

@@ -4,9 +4,9 @@ const { getApiResults } = require('../helpers/apiHelpers');
 
 //get users route
 module.exports = ({getNotes, addNote, updateNote, deleteNote}) => {
-  router.get('/', function(req, res, next) {
+  router.get('/:user_id', function(req, res, next) {
     console.log('notes')
-    getNotes()
+    getNotes(req.params.user_id)
       .then(result => {
         res.json(result);
       })
@@ -15,7 +15,7 @@ module.exports = ({getNotes, addNote, updateNote, deleteNote}) => {
       });
   });
 
-  router.post('/', (req, res, next) => {
+  router.post('/:user_id', (req, res, next) => {
     const note = req.body;
     addNote(note)
       .then(() => {
@@ -27,8 +27,8 @@ module.exports = ({getNotes, addNote, updateNote, deleteNote}) => {
       .catch(e => res.send(e));
   })
   
-  router.put('/', function (req, res) {
-    updateNote(req.body)
+  router.put('/:note_id', function (req, res) {
+    updateNote(req.params.note_id)
     .then(result => {
       res.json(result)
     })
@@ -37,8 +37,8 @@ module.exports = ({getNotes, addNote, updateNote, deleteNote}) => {
     })
   })
 
-  router.delete('/', function (req, res) {
-    deleteNote(req.body)
+  router.delete('/:note_id', function (req, res) {
+    deleteNote(req.params.note_id)
     .then(result => {
       res.json(result)
     })
