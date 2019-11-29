@@ -6,7 +6,7 @@ const { getApiResults } = require('../helpers/apiHelpers');
 module.exports = ({ getAppointments, addAppointment }) => {
 
   router.get('/', function(req, res, next) {
-    
+    console.log('appointment', req.body)
     getAppointments()
       .then(result => { 
         res.json(result);
@@ -17,7 +17,6 @@ module.exports = ({ getAppointments, addAppointment }) => {
   });
 
   router.post('/', function(req, res) {
-    console.log(req.body)
     addAppointment(req.body)
       .then(result => {
         res.json(result)

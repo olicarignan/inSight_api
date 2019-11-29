@@ -6,7 +6,7 @@ const { getApiResults } = require('../helpers/apiHelpers');
 module.exports = ({ getCategories }) => {
 
   router.get('/', function(req, res, next) {
-    
+    console.log('categories', req.body)
     getCategories()
       .then(result => { 
         res.json(result);
