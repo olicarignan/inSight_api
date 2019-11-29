@@ -46,7 +46,7 @@ module.exports = knex => {
 
   const addAppointment = (appointment) => {
     return knex('appointments')
-      .insert({appointment_name: appointment.appointment_name, location: appointment.location, start_time: appointment.start_time, /*start_date: appointment.start_date, */ end_time: appointment.end_time, /*end_date: appointment.end_date,*/ category_id: appointment.category_id, user_id: appointment.user_id})
+      .insert({appointment_name: appointment.appointment_name, location: appointment.location, start_time: appointment.start_time, start_date: appointment.start_date,  end_time: appointment.end_time, end_date: appointment.end_date, category_id: appointment.category_id, user_id: appointment.user_id, appointment_small_note: appointment.appointment_small_note})
       .returning('*')
   }
 

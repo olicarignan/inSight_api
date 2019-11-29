@@ -18,16 +18,16 @@ module.exports = ({ getAppointments, addAppointment }) => {
   router.post('/', (req, res, next) => {
     const appointment = req.body
     addAppointment(appointment)
-      .then(appointment => {
-        const newAppointment = appointment[0];
+    .then(appointment => {
+      const newAppointment = appointment[0];
         
-        if(!newAppointment) {
-          throw new Error('error')
-        }
-          res.json({newAppointment})
-          .status(204);
-        })
-        .catch(e => res.send(e));
-      });
-      return router;
-  }
+      if(!newAppointment) {
+        throw new Error('error')
+      }
+        res.json({newAppointment})
+        .status(204);
+      })
+    .catch(e => res.send(e));
+  });
+  return router;
+}

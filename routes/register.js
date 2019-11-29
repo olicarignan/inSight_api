@@ -7,12 +7,13 @@ const jwt = require('jsonwebtoken');
 
 module.exports = ({ addUser }) => {
   router.post('/', (req, res, next) => {
-    const user = req.body
+    const user = req.body.user
+    console.log(user)
     user.password = bcrypt.hashSync(user.password, 10)
     addUser(user)
       .then(user => {
         const newUser = user[0];
-        console.log(user[0])
+        console.log(req.body)
         if(!newUser) {
           throw new Error('error')
         }
