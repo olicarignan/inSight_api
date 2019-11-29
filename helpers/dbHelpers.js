@@ -20,6 +20,7 @@ module.exports = knex => {
       .select('*')
       .from('appointments')
   }
+
   const getNotes = () => {
 
     return knex
@@ -41,7 +42,17 @@ module.exports = knex => {
   }
   const addAppointment = (appointment) => {
     return knex('appointments')
-      .insert({})
+      .insert({start_date: appointment.start_date, 
+               start_time: appointment.start_time,
+               end_date: appointment.end_date, 
+               end_time: appointment.end_time,
+               appointment_name: appointment.appointment_name,
+               category_id: appointment.category_id,
+               location: appointment.location,
+               user_id: appointment.user_id,
+               appointment_small_note: appointment.appointment_small_note
+               })
+      .returning('*')
   }
 
 
