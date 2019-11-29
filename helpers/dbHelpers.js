@@ -19,11 +19,25 @@ module.exports = knex => {
       .insert({user_id: category.user_id, category_name: category.category_name, colour: category.colour})
       .returning('*')
   }
+
   const getAppointments = (user_id) => {
     return knex
       .select('*')
       .from('appointments')
       .where({user_id: user_id})
+
+  
+  const updateCategory = (category) => {
+    return knex('categories')
+      .where({id: category.id})
+      .update({ category_name: category.category_name, colour: category.colour})
+  }
+  
+  const deleteCategory = (category) => {
+    return knex('categories')
+      .where({id: category.id})
+      .del()
+
   }
 
   const getNotes = () => {
@@ -39,6 +53,18 @@ module.exports = knex => {
       .then(res => res.rows[0])
   }
 
+  const updateNote = (note) => {
+    return knex('notes')
+      .where({id: note.id})
+      .update({category_id: note.category_id, appointment_id: note.appointment_id, note_title: note.note_title, note_content: note.note_content, note_preview: note.note_preview})
+  }
+
+  const deleteNote = (note) => {
+    return knex('notes')
+      .where({id: note.id})
+      .del()
+  }
+
   const addUser = (user) => {
     return knex('users')
       .insert({first_name: user.first_name, last_name: user.last_name, email: user.email, password: user.password})
@@ -52,6 +78,24 @@ module.exports = knex => {
       .where({email: email})
   }
 
+  const getAppointments = () => {
+    return knex
+      .select('*')
+      .from('appointments')
+  }
+
+  const updateAppointment = (appointment) => {
+    return knex('appointments')
+      .where({id: appointment.id})
+      .update({start_date: appointment.start_date, 
+        start_time: appointment.start_time,
+        end_date: appointment.end_date, 
+        end_time: appointment.end_time,
+        appointment_name: appointment.appointment_name,
+        category_id: appointment.category_id,
+        location: appointment.location,
+        appointment_small_note: appointment.appointment_small_note})
+  }
   const addAppointment = (appointment) => {
     return knex('appointments')
       .insert({start_date: appointment.start_date, 
@@ -67,6 +111,12 @@ module.exports = knex => {
       .returning('*')
   }
 
+  const deleteAppointment = (appointment) => {
+    return knex('appointments')
+      .where({id: appointment.id})
+      .del()
+  }
+
 
 
 
@@ -79,6 +129,12 @@ module.exports = knex => {
     getUsersLogin,
     addAppointment,
     addNote,
-    addCategories
+    addCategories,
+    updateAppointment,
+    updateCategory,
+    updateNote,
+    deleteAppointment,
+    deleteCategory,
+    deleteNote
   }
 }

@@ -3,7 +3,7 @@ const router = express.Router();
 const { getApiResults } = require('../helpers/apiHelpers');
 
 
-module.exports = ({ getCategories, addCategories }) => {
+module.exports = ({ getCategories, addCategories, updateCategory, deleteCategory}) => {
 
   router.get('/:user_id', function(req, res, next) {
     getCategories(req.params.user_id)
@@ -27,6 +27,28 @@ module.exports = ({ getCategories, addCategories }) => {
       })
       .catch(e => res.send(e));
   })
+
+  router.put('/', function (req, res) {
+    updateCategory(req.body)
+    .then(result => {
+      res.json(result)
+    })
+    .catch(error => {
+      console.log(error)
+    })
+  })
+
+  router.delete('/', function (req, res) {
+    deleteCategory(req.body)
+    .then(result => {
+      res.json(result)
+    })
+    .catch(error => {
+      console.log(error)
+    })
+  })
+  
+  
   
   
   return router;
