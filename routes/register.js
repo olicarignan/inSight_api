@@ -7,19 +7,21 @@ const jwt = require("jsonwebtoken");
 
 module.exports = ({ addUser }) => {
   router.post("/", (req, res, next) => {
-    console.log(req.body);
-    const user = req.body;
+    const user = req.body.user;
     user.password = bcrypt.hashSync(user.password, 10);
+    console.log(user);
     addUser(user)
       .then(user => {
         console.log(user);
-        if (!user) {
+        const newUser = user[0]
+        if (!newUser) {
           throw new Error("error");
         }
-        jwt.sign(user, process.env.ACCESS_TOKEN_SECRET, (err, token) => {
+        jwt.sign(newUser, process.env.ACCESS_TOKEN_SECRET, (err, token) => {
           // window.localStorage.setItem({token})
           // res.send({token})
-          res.json({ user, token }).status(204);
+          console.log(token)
+          res.json({ newUser, token }).status(204);
         });
         // res.json(user[0]);
       })

@@ -8,8 +8,9 @@ const jwt = require('jsonwebtoken');
 //get users route
 module.exports = ({authenticateToken}) => {
   router.get('/',authenticateToken, (req, res ) => {
+    console.log(req.user)
     if (!req.user) {
-      
+
     } else {
       res.json(req.user)
     } 
