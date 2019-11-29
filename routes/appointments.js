@@ -27,4 +27,4 @@ module.exports = ({ getAppointments, addAppointment }) => {
   })
   
   return router;
-};
+}

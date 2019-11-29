@@ -35,17 +35,8 @@ module.exports = ({ getUsersLogin, addUser }) => {
       .catch(error => {
         console.log(error);
       });
-  });
+    })
 
-  // router.get('/', (req, res, next) => {
-  //   getUsersLogin(req.body.email, req.body.password)
-  //     .then(result => {
-  //       res.json(result);
-  //     })
-  //     .catch(error => {
-  //       console.log(error);
-  //     });
-  // });
-
+  
   return router;
 };

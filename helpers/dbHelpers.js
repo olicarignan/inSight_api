@@ -1,7 +1,6 @@
 module.exports = knex => {
 
   const getUsers = () => {
-
     return knex
       .select('*')
       .from('users')
@@ -11,21 +10,30 @@ module.exports = knex => {
 
     return knex
       .select('*')
-      .from('categories')
-      
+      .from('categories')   
   }
-  const getAppointments = (user_id) => {
-
+  const addCategories = (category) => {
+    return knex('categories')
+      .insert({user_id: category.user_id, category_name: category.category_name, colour: category.colour})
+      .returning('*')
+  }
+  const getAppointments = () => {
     return knex
       .select('*')
       .from('appointments')
   }
 
   const getNotes = () => {
-
     return knex
       .select('*')
       .from('notes')
+  }
+
+  const addNote = (note) => {
+    return knex('notes')
+      .insert({category_id: note.category_id, appointment_id: note.appointment_id, note_title: note.note_title, note_content: note.note_content, note_preview: note.note_preview})
+      .returning('*')
+      .then(res => res.rows[0])
   }
 
   const addUser = (user) => {
@@ -33,13 +41,14 @@ module.exports = knex => {
       .insert({first_name: user.first_name, last_name: user.last_name, email: user.email, password: user.password})
       .returning('*')
   }
-  const getUsersLogin = (email) => {
 
+  const getUsersLogin = (email) => {
     return knex
       .select('*')
       .from('users')
       .where({email: email})
   }
+
   const addAppointment = (appointment) => {
     return knex('appointments')
       .insert({start_date: appointment.start_date, 
@@ -57,6 +66,7 @@ module.exports = knex => {
 
 
 
+
   return {
     getUsers,
     getCategories,
@@ -64,6 +74,8 @@ module.exports = knex => {
     getNotes,
     addUser,
     getUsersLogin,
-    addAppointment
+    addAppointment,
+    addNote,
+    addCategories
   }
 }

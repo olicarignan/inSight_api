@@ -23,7 +23,6 @@ module.exports = ({ addUser }) => {
           console.log(token)
           res.json({ newUser, token }).status(204);
         });
-        // res.json(user[0]);
       })
       .catch(e => res.send(e));
   });
