@@ -15,6 +15,8 @@ const notesRouter = require('./routes/notes');
 const loginRouter = require('./routes/login');
 const logoutRouter = require('./routes/logout');
 const registerRouter = require('./routes/register');
+const authRouter = require('./routes/authToken');
+const {authenticateToken} = require('./helpers/tokenHelper');
 const jwt = require('jsonwebtoken');
 
 const app = express();
@@ -38,6 +40,7 @@ app.use('/api/notes', notesRouter(dbHelpers));
 app.use('/api/login', loginRouter(dbHelpers));
 app.use('/api/register', registerRouter(dbHelpers));
 app.use('/api/logout', logoutRouter(dbHelpers));
+app.use('/api/authenticate', authRouter({authenticateToken}))
 
 
 

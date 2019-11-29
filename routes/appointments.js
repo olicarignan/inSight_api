@@ -15,19 +15,17 @@ module.exports = ({ getAppointments, addAppointment }) => {
         console.log(error);
       });
   });
-  router.post('/', (req, res, next) => {
-    const appointment = req.body
-    addAppointment(appointment)
-    .then(appointment => {
-      const newAppointment = appointment[0];
-        
-      if(!newAppointment) {
-        throw new Error('error')
-      }
-        res.json({newAppointment})
-        .status(204);
+
+  router.post('/', function(req, res) {
+    console.log(req.body)
+    addAppointment(req.body)
+      .then(result => {
+        res.json(result)
       })
-    .catch(e => res.send(e));
-  });
+      .catch(error => {
+        console.log(error)
+      })
+  })
+  
   return router;
 }

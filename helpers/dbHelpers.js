@@ -12,6 +12,11 @@ module.exports = knex => {
       .from('categories')   
   }
 
+  const addCategories = (category) => {
+    return knex('categories')
+      .insert({user_id: category.user_id, category_name: category.category_name, colour: category.colour})
+      .returning('*')
+  }
   const getAppointments = () => {
     return knex
       .select('*')
@@ -46,7 +51,16 @@ module.exports = knex => {
 
   const addAppointment = (appointment) => {
     return knex('appointments')
-      .insert({appointment_name: appointment.appointment_name, location: appointment.location, start_time: appointment.start_time, start_date: appointment.start_date,  end_time: appointment.end_time, end_date: appointment.end_date, category_id: appointment.category_id, user_id: appointment.user_id, appointment_small_note: appointment.appointment_small_note})
+      .insert({start_date: appointment.start_date, 
+               start_time: appointment.start_time,
+               end_date: appointment.end_date, 
+               end_time: appointment.end_time,
+               appointment_name: appointment.appointment_name,
+               category_id: appointment.category_id,
+               location: appointment.location,
+               user_id: appointment.user_id,
+               appointment_small_note: appointment.appointment_small_note
+               })
       .returning('*')
   }
 
@@ -61,6 +75,7 @@ module.exports = knex => {
     addUser,
     getUsersLogin,
     addAppointment,
-    addNote
+    addNote,
+    addCategories
   }
 }
