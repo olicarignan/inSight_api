@@ -17,6 +17,12 @@ module.exports = knex => {
       .insert({user_id: category.user_id, category_name: category.category_name, colour: category.colour})
       .returning('*')
   }
+  
+  const updateCategory = (category) => {
+    return knex('categories')
+      .where({id: category.id})
+      .update({ category_name: category.category_name, colour: category.colour})
+  }
   const getAppointments = () => {
     return knex
       .select('*')
@@ -34,6 +40,12 @@ module.exports = knex => {
       .insert({category_id: note.category_id, appointment_id: note.appointment_id, note_title: note.note_title, note_content: note.note_content, note_preview: note.note_preview})
       .returning('*')
       .then(res => res.rows[0])
+  }
+
+  const updateNote = (note) => {
+    return knex('notes')
+      .where({id: note.id})
+      .update({category_id: note.category_id, appointment_id: note.appointment_id, note_title: note.note_title, note_content: note.note_content, note_preview: note.note_preview})
   }
 
   const addUser = (user) => {
@@ -88,6 +100,8 @@ module.exports = knex => {
     addAppointment,
     addNote,
     addCategories,
-    updateAppointment
+    updateAppointment,
+    updateCategory,
+    updateNote
   }
 }

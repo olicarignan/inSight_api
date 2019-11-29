@@ -3,7 +3,7 @@ const router = express.Router();
 const { getApiResults } = require('../helpers/apiHelpers');
 
 
-module.exports = ({ getCategories, addCategories }) => {
+module.exports = ({ getCategories, addCategories, updateCategory }) => {
 
   router.get('/', function(req, res, next) {
     console.log('categories', req.body)
@@ -27,6 +27,17 @@ module.exports = ({ getCategories, addCategories }) => {
       })
       .catch(e => res.send(e));
   })
+
+  router.put('/', function (req, res) {
+    updateCategory(req.body)
+    .then(result => {
+      res.json(result)
+    })
+    .catch(error => {
+      console.log(error)
+    })
+  })
+  
   
   
   return router;
