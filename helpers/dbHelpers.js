@@ -25,6 +25,7 @@ module.exports = knex => {
       .select('*')
       .from('appointments')
       .where({user_id: user_id})
+  }
 
   
   const updateCategory = (category) => {
@@ -76,12 +77,6 @@ module.exports = knex => {
       .select('*')
       .from('users')
       .where({email: email})
-  }
-
-  const getAppointments = () => {
-    return knex
-      .select('*')
-      .from('appointments')
   }
 
   const updateAppointment = (appointment) => {
