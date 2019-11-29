@@ -3,7 +3,7 @@ const router = express.Router();
 const { getApiResults } = require('../helpers/apiHelpers');
 
 //get users route
-module.exports = ({getNotes, addNote}) => {
+module.exports = ({getNotes, addNote, updateNote}) => {
   router.get('/', function(req, res, next) {
     getNotes()
       .then(result => {
@@ -24,6 +24,16 @@ module.exports = ({getNotes, addNote}) => {
         res.send('got it')
       })
       .catch(e => res.send(e));
+  })
+  
+  router.put('/', function (req, res) {
+    updateNote(req.body)
+    .then(result => {
+      res.json(result)
+    })
+    .catch(error => {
+      console.log(error)
+    })
   })
   
   return router;
