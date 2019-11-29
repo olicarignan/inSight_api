@@ -5,9 +5,8 @@ const { getApiResults } = require('../helpers/apiHelpers');
 
 module.exports = ({ getCategories }) => {
 
-  router.get('/', function(req, res, next) {
-    console.log('categories', req.body)
-    getCategories()
+  router.get('/:user_id', function(req, res, next) {
+    getCategories(req.params.user_id)
       .then(result => { 
         res.json(result);
       })

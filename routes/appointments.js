@@ -5,9 +5,8 @@ const { getApiResults } = require('../helpers/apiHelpers');
 
 module.exports = ({ getAppointments, addAppointment }) => {
 
-  router.get('/', function(req, res, next) {
-    console.log('appointment', req.body)
-    getAppointments()
+  router.get('/:user_id', function(req, res, next) {
+    getAppointments(req.params.user_id)
       .then(result => { 
         res.json(result);
       })

@@ -8,10 +8,11 @@ module.exports = knex => {
   }
 
   const getCategories = (user_id) => {
-
+    console.log(user_id)
     return knex
       .select('*')
       .from('categories')
+      .where({user_id: user_id})
       
   }
   const getAppointments = (user_id) => {
@@ -19,6 +20,7 @@ module.exports = knex => {
     return knex
       .select('*')
       .from('appointments')
+      .where({user_id: user_id})
   }
 
   const getNotes = () => {
