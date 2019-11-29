@@ -3,7 +3,7 @@ const router = express.Router();
 const { getApiResults } = require('../helpers/apiHelpers');
 
 //get users route
-module.exports = ({getNotes, addNote, updateNote}) => {
+module.exports = ({getNotes, addNote, updateNote, deleteNote}) => {
   router.get('/', function(req, res, next) {
     getNotes()
       .then(result => {
@@ -35,6 +35,17 @@ module.exports = ({getNotes, addNote, updateNote}) => {
       console.log(error)
     })
   })
+
+  router.delete('/', function (req, res) {
+    deleteNote(req.body)
+    .then(result => {
+      res.json(result)
+    })
+    .catch(error => {
+      console.log(error)
+    })
+  })
+  
   
   return router;
 };
