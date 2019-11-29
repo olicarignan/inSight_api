@@ -6,12 +6,12 @@ module.exports = knex => {
       .from('users')
   }
 
-  const getCategories = () => {
+  const getCategories = (user_id) => {
+
     return knex
       .select('*')
       .from('categories')   
   }
-
   const addCategories = (category) => {
     return knex('categories')
       .insert({user_id: category.user_id, category_name: category.category_name, colour: category.colour})
