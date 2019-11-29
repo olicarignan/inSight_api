@@ -5,9 +5,8 @@ const { getApiResults } = require('../helpers/apiHelpers');
 
 module.exports = ({ getCategories, addCategories, updateCategory, deleteCategory}) => {
 
-  router.get('/', function(req, res, next) {
-    console.log('categories', req.body)
-    getCategories()
+  router.get('/:user_id', function(req, res, next) {
+    getCategories(req.params.user_id)
       .then(result => { 
         res.json(result);
       })
@@ -16,14 +15,15 @@ module.exports = ({ getCategories, addCategories, updateCategory, deleteCategory
       });
   });
 
-  router.post('/', (req, res, next) => {
+  router.post('/:user_id', (req, res, next) => {
+    console.log(req.body)
     const category = req.body;
     addCategories(category)
-      .then(() => {
+      .then((result) => {
         if(!category) {
           res.send({error: 'error'});
         }
-        res.send('got it')
+        res.json(result)
       })
       .catch(e => res.send(e));
   })

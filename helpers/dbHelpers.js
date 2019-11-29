@@ -7,16 +7,25 @@ module.exports = knex => {
   }
 
   const getCategories = (user_id) => {
-
+    console.log(user_id)
     return knex
       .select('*')
-      .from('categories')   
+      .from('categories')
+      .where({user_id: user_id})
+      
   }
   const addCategories = (category) => {
     return knex('categories')
       .insert({user_id: category.user_id, category_name: category.category_name, colour: category.colour})
       .returning('*')
   }
+
+  const getAppointments = (user_id) => {
+    return knex
+      .select('*')
+      .from('appointments')
+      .where({user_id: user_id})
+
   
   const updateCategory = (category) => {
     return knex('categories')
@@ -28,6 +37,7 @@ module.exports = knex => {
     return knex('categories')
       .where({id: category.id})
       .del()
+
   }
 
   const getNotes = () => {
