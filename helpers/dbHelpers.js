@@ -19,7 +19,7 @@ module.exports = knex => {
       .insert({user_id: category.user_id, category_name: category.category_name, colour: category.colour})
       .returning('*')
   }
-  const getAppointments = () => {
+  const getAppointments = (user_id) => {
     return knex
       .select('*')
       .from('appointments')

@@ -15,14 +15,15 @@ module.exports = ({ getCategories, addCategories }) => {
       });
   });
 
-  router.post('/', (req, res, next) => {
+  router.post('/:user_id', (req, res, next) => {
+    console.log(req.body)
     const category = req.body;
     addCategories(category)
-      .then(() => {
+      .then((result) => {
         if(!category) {
           res.send({error: 'error'});
         }
-        res.send('got it')
+        res.json(result)
       })
       .catch(e => res.send(e));
   })
