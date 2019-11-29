@@ -3,7 +3,7 @@ const router = express.Router();
 const { getApiResults } = require('../helpers/apiHelpers');
 
 
-module.exports = ({ getAppointments, addAppointment, updateAppointment }) => {
+module.exports = ({ getAppointments, addAppointment, updateAppointment, deleteAppointment }) => {
 
   router.get('/', function(req, res, next) {
     console.log('appointment', req.body)
@@ -35,6 +35,17 @@ module.exports = ({ getAppointments, addAppointment, updateAppointment }) => {
       console.log(error)
     })
   })
+  
+  router.delete('/', function (req, res) {
+    deleteAppointment(req.body)
+    .then(result => {
+      res.json(result)
+    })
+    .catch(error => {
+      console.log(error)
+    })
+  })
+  
   
 
   
