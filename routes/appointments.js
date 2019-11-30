@@ -26,7 +26,7 @@ module.exports = ({ getAppointments, addAppointment, updateAppointment, deleteAp
       })
   })
 
-  router.put('/:appointment_id', function (req, res) {
+  router.put('/:category_id', function (req, res) {
     updateAppointment(req.params.appointment_id)
     .then(result => {
       res.json(result)
