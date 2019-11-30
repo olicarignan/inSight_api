@@ -93,6 +93,8 @@ module.exports = knex => {
         appointment_small_note: appointment.appointment_small_note})
   }
   const addAppointment = (appointment) => {
+    console.log('dbhelper', appointment)
+    
     return knex('appointments')
       .insert({start_date: appointment.start_date, 
                start_time: appointment.start_time,
