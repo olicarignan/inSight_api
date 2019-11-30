@@ -84,9 +84,8 @@ module.exports = knex => {
     return knex('appointments')
       .where({id: appointment_id})
       .update({start_date: appointment.start_date, 
-        start_time: appointment.start_time,
+        allday:appointment.allday,
         end_date: appointment.end_date, 
-        end_time: appointment.end_time,
         appointment_name: appointment.appointment_name,
         category_id: appointment.category_id,
         location: appointment.location,
@@ -96,10 +95,9 @@ module.exports = knex => {
     console.log('dbhelper', appointment)
     
     return knex('appointments')
-      .insert({start_date: appointment.start_date, 
-               start_time: appointment.start_time,
+      .insert({start_date: appointment.start_date,
                end_date: appointment.end_date, 
-               end_time: appointment.end_time,
+               allday: appointment.allday,
                appointment_name: appointment.appointment_name,
                category_id: appointment.category_id,
                location: appointment.location,
