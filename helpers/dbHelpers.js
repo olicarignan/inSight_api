@@ -97,6 +97,7 @@ module.exports = knex => {
     return knex('appointments')
       .insert({start_date: appointment.start_date,
                end_date: appointment.end_date, 
+               toggle: appointment.toggle,
                allday: appointment.allday,
                appointment_name: appointment.appointment_name,
                category_id: appointment.category_id,

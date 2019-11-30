@@ -25,7 +25,7 @@ exports.up = function(knex) {
     appointment.datetime('start_date');
     appointment.datetime('end_date');
     appointment.boolean('allday');
-    appointment.boolean('togle');
+    appointment.boolean('toggle');
     appointment.string('appointment_small_note')
     appointment.integer('category_id').references('id').inTable('categories').notNull().onDelete('cascade');
     appointment.integer('user_id').references('id').inTable('users').notNull().onDelete('cascade');
