@@ -85,6 +85,7 @@ module.exports = knex => {
       .where({id: appointment_id})
       .update({start_date: appointment.start_date, 
         allday:appointment.allday,
+        togle: appointment.togle,
         end_date: appointment.end_date, 
         appointment_name: appointment.appointment_name,
         category_id: appointment.category_id,
@@ -96,6 +97,7 @@ module.exports = knex => {
     
     return knex('appointments')
       .insert({start_date: appointment.start_date,
+              togle: appointment.togle,
                end_date: appointment.end_date, 
                allday: appointment.allday,
                appointment_name: appointment.appointment_name,
