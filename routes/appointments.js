@@ -16,7 +16,7 @@ module.exports = ({ getAppointments, addAppointment, updateAppointment, deleteAp
   });
 
   router.post('/:user_id', function(req, res) {
-    console.log('router', req)
+    console.log('router', req.body)
     addAppointment(req.body)
       .then(result => {
         res.json(result)
