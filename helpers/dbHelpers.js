@@ -80,22 +80,17 @@ module.exports = knex => {
       .where({email: email})
   }
 
-  const updateAppointment = (appointment_id) => {
+  const updateAppointment = (category_id) => {
     return knex('appointments')
-      .where({id: appointment_id})
-      .update({start_date: appointment.start_date, 
-        allday:appointment.allday,
-        end_date: appointment.end_date, 
-        appointment_name: appointment.appointment_name,
-        category_id: appointment.category_id,
-        location: appointment.location,
-        appointment_small_note: appointment.appointment_small_note})
+      .where({category_id: category_id})
+      .update({toggle: !toggle})
   }
   const addAppointment = (appointment) => {
     console.log('dbhelper', appointment)
     
     return knex('appointments')
       .insert({start_date: appointment.start_date,
+              togle: appointment.togle,
                end_date: appointment.end_date, 
                toggle: appointment.toggle,
                allday: appointment.allday,
