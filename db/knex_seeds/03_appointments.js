@@ -11,8 +11,7 @@ exports.seed = function(knex) {
           location: 'red',
           start_date:'2019-11-28',
           end_date:'2019-11-29',
-          start_time: '19:33:56',
-          end_time: '20:33:56', 
+          allday:'True',
           appointment_small_note:'this is a small note',
           category_id: 1,
           user_id: 1
