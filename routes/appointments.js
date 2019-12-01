@@ -60,8 +60,10 @@ module.exports = ({ getAppointments, addAppointment, updateAppointmentTrue, upda
   })
   
   router.delete('/:user_id/appointment/:appointment_id', function (req, res) {
+    
     console.log(req.params.appointment_id)
     deleteAppointment(req.params.appointment_id) 
+
     .then(result => {
       console.log(result)
       res.json(result)

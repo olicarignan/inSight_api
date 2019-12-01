@@ -112,6 +112,8 @@ module.exports = knex => {
                allday: appointment.allday,
                appointment_name: appointment.appointment_name,
                category_id: appointment.category_id,
+               category_name: appointment.category_name,
+               toggle: appointment.toggle,
                location: appointment.location,
                user_id: appointment.user_id,
                appointment_small_note: appointment.appointment_small_note
