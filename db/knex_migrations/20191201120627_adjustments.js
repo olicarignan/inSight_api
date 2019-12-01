@@ -22,10 +22,11 @@ exports.up = function(knex) {
     appointment.increments('id').primary();
     appointment.string('appointment_name');
     appointment.string('location');
-    appointment.date('start_date')
-    appointment.date('end_date')
-    appointment.time('start_time');
-    appointment.time('end_time');
+    appointment.datetime('start_date');
+    appointment.datetime('end_date');
+    appointment.boolean('allday');
+    appointment.boolean('toggle');
+    appointment.string('category_name'),
     appointment.string('appointment_small_note')
     appointment.integer('category_id').references('id').inTable('categories').notNull().onDelete('cascade');
     appointment.integer('user_id').references('id').inTable('users').notNull().onDelete('cascade');

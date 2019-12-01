@@ -38,7 +38,7 @@ module.exports = ({ getCategories, addCategories, updateCategory, deleteCategory
     })
   })
 
-  router.delete('/:category_id', function (req, res) {
+  router.delete('/:user_id/categories/:category_id', function (req, res) {
     deleteCategory(req.params.category_id)
     .then(result => {
       res.json(result)
