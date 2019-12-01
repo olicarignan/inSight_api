@@ -26,14 +26,7 @@ exports.up = function(knex) {
     appointment.datetime('end_date');
     appointment.boolean('allday');
     appointment.boolean('toggle');
-<<<<<<< HEAD:db/knex_migrations/20191130202414_database_update.js
-<<<<<<< HEAD:db/knex_migrations/20191130202414_database_update.js
-=======
     appointment.string('category_name'),
->>>>>>> token:db/knex_migrations/20191201120627_adjustments.js
-=======
-    appointment.string('category_name'),
->>>>>>> fb4bf0b5aee283110f0b3e3902b77ee26398d6e0:db/knex_migrations/20191201125057_adjustments.js
     appointment.string('appointment_small_note')
     appointment.integer('category_id').references('id').inTable('categories').notNull().onDelete('cascade');
     appointment.integer('user_id').references('id').inTable('users').notNull().onDelete('cascade');
