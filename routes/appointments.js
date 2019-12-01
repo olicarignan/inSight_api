@@ -42,7 +42,6 @@ module.exports = ({ getAppointments, addAppointment, updateAppointmentTrue, upda
     console.log(req.params.category_id)
     updateAppointmentFalse(req.params.category_id)
     .then(result => {
-      console.log(result)
       res.json(result)
     })
     .catch(error => {
@@ -53,7 +52,6 @@ module.exports = ({ getAppointments, addAppointment, updateAppointmentTrue, upda
   router.put('/:user_id/category/:category_id/false', function (req, res) { 
     updateAppointmentTrue(req.params.category_id)
     .then(result => {
-      console.log(result)
       res.json(result)
     })
     .catch(error => {
