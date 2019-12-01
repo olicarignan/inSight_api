@@ -106,7 +106,7 @@ module.exports = knex => {
     
     return knex('appointments')
       .insert({start_date: appointment.start_date,
-              togle: appointment.togle,
+              toggle: appointment.toggle,
                end_date: appointment.end_date, 
                toggle: appointment.toggle,
                allday: appointment.allday,
@@ -124,9 +124,6 @@ module.exports = knex => {
       .where({id: appointment_id})
       .del()
   }
-
-
-
 
   return {
     getUsers,
