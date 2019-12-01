@@ -4,9 +4,9 @@ const { getApiResults } = require('../helpers/apiHelpers');
 
 //get users route
 module.exports = ({getNotes, addNote, updateNote, deleteNote}) => {
-  router.get('/', function(req, res, next) {
+  router.get('/:user_id', function(req, res, next) {
     console.log('notes')
-    getNotes()
+    getNotes(req.params.user_id)
       .then(result => {
         res.json(result);
       })

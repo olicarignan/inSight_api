@@ -9,10 +9,11 @@ exports.seed = function(knex) {
         {
           category_id: 1,
           appointment_id: 1,
+          user_id: 1,
           note_title: 'Note title from db',
           note_content: 'here we have the note content thank you it can be as biiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiig as you want it to be', 
           note_preview: 'small preview of the note content',
-        },
+        }
       ]);
     }),
   ]);

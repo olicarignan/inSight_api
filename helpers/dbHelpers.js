@@ -45,7 +45,7 @@ module.exports = knex => {
     return knex
       .select('*')
       .from('notes')
-      // .where({user_id: user_id})
+      .where({user_id: user_id})
   }
 
   const addNote = (note) => {
