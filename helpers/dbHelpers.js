@@ -80,11 +80,27 @@ module.exports = knex => {
       .where({email: email})
   }
 
-  const updateAppointment = (category_id) => {
+  const updateAppointmentTrue = (category_id) => {
     return knex('appointments')
       .where({category_id: category_id})
-      .update({toggle: !toggle})
+      .update({toggle: true})
+      .returning('*')
   }
+
+  const updateAppointmentFalse = (category_id) => {
+    return knex('appointments')
+      .where({category_id: category_id})
+      .update({toggle: false})
+      .returning('*')
+  }
+
+  const getAppointmentsById = (category_id) => {
+    return knex
+      .select('*')
+      .from('appointments')
+      .where({category_id: category_id})
+  }
+
   const addAppointment = (appointment) => {
     console.log('dbhelper', appointment)
     
@@ -122,11 +138,13 @@ module.exports = knex => {
     addAppointment,
     addNote,
     addCategories,
-    updateAppointment,
+    updateAppointmentTrue,
+    updateAppointmentFalse,
     updateCategory,
     updateNote,
     deleteAppointment,
     deleteCategory,
-    deleteNote
+    deleteNote,
+    getAppointmentsById
   }
 }

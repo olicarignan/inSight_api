@@ -3,7 +3,7 @@ const router = express.Router();
 const { getApiResults } = require('../helpers/apiHelpers');
 
 
-module.exports = ({ getAppointments, addAppointment, updateAppointment, deleteAppointment }) => {
+module.exports = ({ getAppointments, addAppointment, updateAppointmentTrue, updateAppointmentFalse, deleteAppointment, getAppointmentsById }) => {
 
   router.get('/:user_id', function(req, res, next) {
     getAppointments(req.params.user_id)
@@ -26,9 +26,34 @@ module.exports = ({ getAppointments, addAppointment, updateAppointment, deleteAp
       })
   })
 
-  router.put('/:category_id', function (req, res) {
-    updateAppointment(req.params.appointment_id)
+  router.get('/:user_id/category/:category_id', function(req, res) {
+    console.log(req.params.category_id)
+    getAppointmentsById(req.params.category_id)
+      .then(result => {
+        console.log(result)
+        res.json(result)
+      })
+      .catch(error => {
+        console.log(error)
+      })
+  })
+
+  router.put('/:user_id/category/:category_id/true', function (req, res) { 
+    console.log(req.params.category_id)
+    updateAppointmentFalse(req.params.category_id)
     .then(result => {
+      console.log(result)
+      res.json(result)
+    })
+    .catch(error => {
+      console.log(error)
+    })
+  })
+
+  router.put('/:user_id/category/:category_id/false', function (req, res) { 
+    updateAppointmentTrue(req.params.category_id)
+    .then(result => {
+      console.log(result)
       res.json(result)
     })
     .catch(error => {
