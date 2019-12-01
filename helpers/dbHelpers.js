@@ -82,7 +82,6 @@ module.exports = knex => {
 
   const updateAppointmentTrue = (category_id) => {
     return knex('appointments')
-<<<<<<< HEAD
       .where({category_id: category_id})
       .update({toggle: true})
       .returning('*')
@@ -93,15 +92,6 @@ module.exports = knex => {
       .where({category_id: category_id})
       .update({toggle: false})
       .returning('*')
-=======
-      .where({id: appointment_id})
-      .update({start_date: appointment.start_date, 
-        end_date: appointment.end_date, 
-        appointment_name: appointment.appointment_name,
-        category_id: appointment.category_id,
-        location: appointment.location,
-        appointment_small_note: appointment.appointment_small_note})
->>>>>>> token
   }
 
   const getAppointmentsById = (category_id) => {
@@ -115,16 +105,8 @@ module.exports = knex => {
     console.log('dbhelper', appointment)
     
     return knex('appointments')
-<<<<<<< HEAD
-      .insert({start_date: appointment.start_date,
-               toggle: appointment.toggle,
-               end_date: appointment.end_date, 
-               toggle: appointment.toggle,
-               allday: appointment.allday,
-=======
       .insert({start_date: appointment.start_date, 
                end_date: appointment.end_date, 
->>>>>>> token
                appointment_name: appointment.appointment_name,
                category_id: appointment.category_id,
                category_name: appointment.category_name,
@@ -141,9 +123,6 @@ module.exports = knex => {
       .where({id: appointment_id})
       .del()
   }
-
-
-
 
   return {
     getUsers,
