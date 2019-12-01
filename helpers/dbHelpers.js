@@ -80,22 +80,36 @@ module.exports = knex => {
       .where({email: email})
   }
 
-  const updateAppointment = (appointment_id) => {
+  const updateAppointmentTrue = (category_id) => {
     return knex('appointments')
-      .where({id: appointment_id})
-      .update({start_date: appointment.start_date, 
-        end_date: appointment.end_date, 
-        appointment_name: appointment.appointment_name,
-        category_id: appointment.category_id,
-        location: appointment.location,
-        appointment_small_note: appointment.appointment_small_note})
+      .where({category_id: category_id})
+      .update({toggle: true})
+      .returning('*')
   }
+
+  const updateAppointmentFalse = (category_id) => {
+    return knex('appointments')
+      .where({category_id: category_id})
+      .update({toggle: false})
+      .returning('*')
+  }
+
+  const getAppointmentsById = (category_id) => {
+    return knex
+      .select('*')
+      .from('appointments')
+      .where({category_id: category_id})
+  }
+
   const addAppointment = (appointment) => {
     console.log('dbhelper', appointment)
     
     return knex('appointments')
-      .insert({start_date: appointment.start_date, 
+      .insert({start_date: appointment.start_date,
+               toggle: appointment.toggle,
                end_date: appointment.end_date, 
+               toggle: appointment.toggle,
+               allday: appointment.allday,
                appointment_name: appointment.appointment_name,
                category_id: appointment.category_id,
                category_name: appointment.category_name,
@@ -113,9 +127,6 @@ module.exports = knex => {
       .del()
   }
 
-
-
-
   return {
     getUsers,
     getCategories,
@@ -126,11 +137,13 @@ module.exports = knex => {
     addAppointment,
     addNote,
     addCategories,
-    updateAppointment,
+    updateAppointmentTrue,
+    updateAppointmentFalse,
     updateCategory,
     updateNote,
     deleteAppointment,
     deleteCategory,
-    deleteNote
+    deleteNote,
+    getAppointmentsById
   }
 }
