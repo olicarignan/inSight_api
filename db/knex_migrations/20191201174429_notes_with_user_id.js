@@ -35,6 +35,7 @@ exports.up = function(knex) {
 
   .createTable('notes', function(note) {
     note.increments('id').primary();
+    note.integer('user_id').references('id').inTable('users').notNull().onDelete('cascade');
     note.integer('category_id').references('id').inTable('categories').notNull().onDelete('cascade');
     note.integer('appointment_id').references('id').inTable('appointments').notNull().onDelete('cascade');
     note.string('note_title');
