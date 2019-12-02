@@ -16,10 +16,13 @@ const loginRouter = require('./routes/login');
 const logoutRouter = require('./routes/logout');
 const registerRouter = require('./routes/register');
 const authRouter = require('./routes/authToken');
+const notificationRouter = require('./routes/save-subscription')
 const {authenticateToken} = require('./helpers/tokenHelper');
 const jwt = require('jsonwebtoken');
 
 const app = express();
+
+const bodyParser = require('body-parser')
 
 
 // view engine setup
@@ -41,7 +44,7 @@ app.use('/api/login', loginRouter(dbHelpers));
 app.use('/api/register', registerRouter(dbHelpers));
 app.use('/api/logout', logoutRouter(dbHelpers));
 app.use('/api/authenticate', authRouter({authenticateToken}))
-
+app.use('/api/save-subscription', notificationRouter(dbHelpers))
 
 
 
