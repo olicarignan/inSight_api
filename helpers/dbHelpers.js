@@ -48,11 +48,22 @@ module.exports = knex => {
       .where({user_id: user_id})
   }
 
-  const addNote = (note) => {
-    return knex('notes')
-      .insert({category_id: note.category_id, appointment_id: note.appointment_id, note_title: note.note_title, note_content: note.note_content, note_preview: note.note_preview})
-      .returning('*')
-      .then(res => res.rows[0])
+  getUsersNotesForCategory = (user_id, category_id) => {
+    return knex
+      .select('*')
+      .from('notes')
+      .where({user_id: user_id, category_id: category_id})
+  }
+
+  const addNote = (note_title, note, category_id, note_preview, note_index, user_id) => {
+    return knex.raw(
+    `insert into notes (note_title, category_id, note_content, note_preview, index, user_id)
+     values (:note_title, :category_id, :note, :note_preview, :note_index, :user_id)
+     on conflict (index)
+     do update
+     set note_content = :note
+     returning note_content;`
+     ,{note_title, category_id, note, note_preview, note_index, user_id})
   }
 
   const updateNote = (note_id) => {
@@ -141,6 +152,7 @@ module.exports = knex => {
     deleteAppointment,
     deleteCategory,
     deleteNote,
-    getAppointmentsById
+    getAppointmentsById,
+    getUsersNotesForCategory
   }
 }

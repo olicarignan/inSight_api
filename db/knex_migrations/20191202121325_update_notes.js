@@ -35,11 +35,12 @@ exports.up = function(knex) {
 
   .createTable('notes', function(note) {
     note.increments('id').primary();
+    note.string('index');
+    note.unique('index')
     note.integer('user_id').references('id').inTable('users').notNull().onDelete('cascade');
     note.integer('category_id').references('id').inTable('categories').notNull().onDelete('cascade');
-    note.integer('appointment_id').references('id').inTable('appointments').notNull().onDelete('cascade');
     note.string('note_title');
-    note.text('note_content')
+    note.jsonb('note_content')
     note.string('note_preview')
     note.timestamps(true, true);
   });
