@@ -48,7 +48,7 @@ module.exports = knex => {
       .where({user_id: user_id})
   }
 
-  getUsersNotesForCategory = (user_id, category_id) => {
+  const getUsersNotesForCategory = (user_id, category_id) => {
     return knex
       .select('*')
       .from('notes')
@@ -91,17 +91,10 @@ module.exports = knex => {
       .where({email: email})
   }
 
-  const updateAppointmentTrue = (category_id) => {
+  const updateAppointmentToggle = (category_id, toggle) => {
     return knex('appointments')
       .where({category_id: category_id})
-      .update({toggle: true})
-      .returning('*')
-  }
-
-  const updateAppointmentFalse = (category_id) => {
-    return knex('appointments')
-      .where({category_id: category_id})
-      .update({toggle: false})
+      .update({toggle: toggle})
       .returning('*')
   }
 
@@ -145,8 +138,7 @@ module.exports = knex => {
     addAppointment,
     addNote,
     addCategories,
-    updateAppointmentTrue,
-    updateAppointmentFalse,
+    updateAppointmentToggle,
     updateCategory,
     updateNote,
     deleteAppointment,
